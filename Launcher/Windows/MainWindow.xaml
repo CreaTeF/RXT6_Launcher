@@ -11,7 +11,7 @@
                       DataContext="{Binding RelativeSource={RelativeSource Self}}"
                       FontFamily="Roboto"
                       GlowBrush="{DynamicResource AccentColorBrush}"
-                      Icon="../Resources/IMG/discord-logo.png"
+                      Icon="../Resources/IMG/logo-seditio.png"
                       IconBitmapScalingMode="Fant"
                       IconEdgeMode="Aliased"
                       Loaded="MetroWindow_Loaded"
