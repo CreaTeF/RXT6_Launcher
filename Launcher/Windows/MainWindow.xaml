@@ -1,0 +1,92 @@
+﻿<controls:MetroWindow x:Class="Launcher.Windows.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                      xmlns:wpf="clr-namespace:LoadingIndicators.WPF;assembly=LoadingIndicators.WPF"
+                      Title="RXT6 Launcher 🎮"
+                      Width="950"
+                      Height="630"
+                      Background="{DynamicResource MaterialDesignPaper}"
+                      DataContext="{Binding RelativeSource={RelativeSource Self}}"
+                      FontFamily="Roboto"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      Icon="../Resources/IMG/discord-logo.png"
+                      IconBitmapScalingMode="Fant"
+                      IconEdgeMode="Aliased"
+                      Loaded="MetroWindow_Loaded"
+                      ShowIconOnTitleBar="True"
+                      TextElement.FontSize="13"
+                      TextElement.FontWeight="Regular"
+                      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+                      TextOptions.TextFormattingMode="Ideal"
+                      TextOptions.TextRenderingMode="Auto"
+                      TitleCharacterCasing="Normal"
+                      WindowButtonCommandsOverlayBehavior="Always"
+                      WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.RowSpan="2"
+               Grid.ColumnSpan="2"
+               Source="../Resources/IMG/background.png" />
+
+        <Button Grid.Row="0"
+                Width="200"
+                Margin="10,10,10,5"
+                HorizontalAlignment="Left"
+                Content="Server List" />
+        <Button Grid.Row="0"
+                Width="200"
+                Margin="10,10,10,5"
+                HorizontalAlignment="Center"
+                Content="Friend List" />
+        <Button Grid.Row="0"
+                Width="200"
+                Margin="10,10,10,5"
+                HorizontalAlignment="Right"
+                Content="Forums" />
+
+        <wpf:LoadingIndicator Grid.Row="0"
+                              Grid.RowSpan="2"
+                              Grid.Column="0"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Style="{DynamicResource LoadingIndicatorArcsStyle}"
+                              Visibility="{Binding LoadingVisibility}" />
+
+        <DataGrid x:Name="DataGrid"
+                  Grid.Row="1"
+                  Margin="10"
+                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="8"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserSortColumns="True"
+                  ItemsSource="{Binding Items,
+                                        Mode=TwoWay}"
+                  Opacity="{Binding DataGridOpacity}"
+                  Visibility="{Binding DataGridVisibility}">
+            <DataGrid.Columns>
+                <materialDesign:MaterialDataGridTextColumn Width="440"
+                                                           Binding="{Binding Host}"
+                                                           Header="Host"
+                                                           IsReadOnly="True" />
+                <materialDesign:MaterialDataGridTextColumn MinWidth="300"
+                                                           Binding="{Binding Map}"
+                                                           Header="Map"
+                                                           IsReadOnly="True" />
+                <materialDesign:MaterialDataGridTextColumn MinWidth="50"
+                                                           Binding="{Binding Ping}"
+                                                           Header="Ping"
+                                                           IsReadOnly="True" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</controls:MetroWindow>
